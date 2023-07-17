@@ -44,8 +44,6 @@ public:
     QLineEdit *lineEdit_ServerIP;
     QPushButton *pushButton_Stop;
     QTextBrowser *textBrowser_ShowData;
-    QLabel *label_TextStatus;
-    QLabel *label_Status;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -54,7 +52,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(528, 406);
+        MainWindow->resize(528, 389);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName("centralWidget");
         pushButton_Start = new QPushButton(centralWidget);
@@ -105,12 +103,6 @@ public:
         textBrowser_ShowData = new QTextBrowser(centralWidget);
         textBrowser_ShowData->setObjectName("textBrowser_ShowData");
         textBrowser_ShowData->setGeometry(QRect(270, 10, 251, 301));
-        label_TextStatus = new QLabel(centralWidget);
-        label_TextStatus->setObjectName("label_TextStatus");
-        label_TextStatus->setGeometry(QRect(10, 320, 49, 16));
-        label_Status = new QLabel(centralWidget);
-        label_Status->setObjectName("label_Status");
-        label_Status->setGeometry(QRect(50, 320, 121, 16));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
@@ -146,8 +138,6 @@ public:
         label_Timing->setText(QCoreApplication::translate("MainWindow", "Timing(s)", nullptr));
         lineEdit_ServerIP->setText(QString());
         pushButton_Stop->setText(QCoreApplication::translate("MainWindow", "Stop", nullptr));
-        label_TextStatus->setText(QCoreApplication::translate("MainWindow", "Status:", nullptr));
-        label_Status->setText(QCoreApplication::translate("MainWindow", "_________", nullptr));
     } // retranslateUi
 
 };

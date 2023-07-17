@@ -59,6 +59,7 @@ void MainWindow::tcpDisconnect(){
     statusBar()->showMessage("Disconnected");
 }
 
+/*
 void MainWindow::copyIp(){
 
 }
@@ -67,7 +68,24 @@ void MainWindow::setIp(){
 
 }
 
-/*void MainWindow::getData(){
+
+void MainWindow::getData()
+{
+
+}*/
+
+void MainWindow::startTemp()
+{
+    int timing = 1000*ui->horizontalSlider_Timing->value();
+    temp = startTimer(timing);
+}
+
+void MainWindow::stopTemp()
+{
+    killTimer(temp);
+}
+
+void MainWindow::getData(){
     QString str;
     QByteArray array;
     QStringList list;
@@ -94,25 +112,21 @@ void MainWindow::setIp(){
                     str = list.at(1);
                     qDebug() << thetime << ": " << str;
                 }
+
+                valores = lista.at(1).toInt();
+                qDebug()<<
             }
         }
     }
-}*/
+}
 
-void MainWindow::getData()
-{
+void MainWindow::buttonStart(){
 
 }
 
-void MainWindow::startTemp()
+void MainWindow::setValor()
 {
-    int timing = 1000*ui->horizontalSlider_Timing->value();
-    temp = startTimer(timing);
-}
 
-void MainWindow::stopTemp()
-{
-    killTimer(temp);
 }
 
 MainWindow::~MainWindow()

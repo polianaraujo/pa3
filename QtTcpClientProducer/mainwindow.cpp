@@ -55,11 +55,14 @@ void MainWindow::putData(){
     QString str;
     qint64 msecdate;
 
+    int valor_min = ui->lcdNumber_Min->value();
+    int valor_max = ui->lcdNumber_Max->value();
+
     if(socket->state()== QAbstractSocket::ConnectedState){
 
         msecdate = QDateTime::currentDateTime().toMSecsSinceEpoch();
         str = "set "+ QString::number(msecdate) + " " +
-            QString::number(rand()%35)+"\r\n";
+              QString::number(valor_min + rand()% (valor_max - valor_min))+"\r\n";
 
         qDebug() << str;
         qDebug() << socket->write(str.toStdString().c_str())

@@ -24,8 +24,8 @@ public:
 
 public slots:
     void getData();
-    void setIp();
-    void copyIp();
+    //void setIp();
+    //void copyIp();
     void startTemp();
     void stopTemp();
 

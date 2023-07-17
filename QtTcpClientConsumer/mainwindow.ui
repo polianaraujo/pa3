@@ -146,12 +146,12 @@
    <slot>display(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>187</x>
-     <y>369</y>
+     <x>96</x>
+     <y>376</y>
     </hint>
     <hint type="destinationlabel">
-     <x>220</x>
-     <y>373</y>
+     <x>233</x>
+     <y>376</y>
     </hint>
    </hints>
   </connection>
@@ -166,8 +166,8 @@
      <y>93</y>
     </hint>
     <hint type="destinationlabel">
-     <x>56</x>
-     <y>40</y>
+     <x>66</x>
+     <y>108</y>
     </hint>
    </hints>
   </connection>
@@ -178,12 +178,12 @@
    <slot>tcpDisconnect()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>259</x>
-     <y>87</y>
+     <x>161</x>
+     <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>227</x>
-     <y>44</y>
+     <x>210</x>
+     <y>107</y>
     </hint>
    </hints>
   </connection>
@@ -194,12 +194,12 @@
    <slot>startTemp()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>85</x>
-     <y>408</y>
+     <x>29</x>
+     <y>410</y>
     </hint>
     <hint type="destinationlabel">
-     <x>74</x>
-     <y>378</y>
+     <x>55</x>
+     <y>423</y>
     </hint>
    </hints>
   </connection>
@@ -210,12 +210,12 @@
    <slot>stopTemp()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>231</x>
-     <y>404</y>
+     <x>166</x>
+     <y>410</y>
     </hint>
     <hint type="destinationlabel">
-     <x>192</x>
-     <y>378</y>
+     <x>202</x>
+     <y>422</y>
     </hint>
    </hints>
   </connection>
@@ -226,8 +226,8 @@
    <slot>showProd()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>139</x>
-     <y>321</y>
+     <x>60</x>
+     <y>323</y>
     </hint>
     <hint type="destinationlabel">
      <x>171</x>
