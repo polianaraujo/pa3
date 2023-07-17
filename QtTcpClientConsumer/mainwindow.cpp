@@ -35,6 +35,16 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(clicked(bool)),
             this,
             SLOT(tcpDisconnect()));
+
+    //connect(ui->horizontalSlider_Timing,
+    //        SIGNAL(valueChanged(int)),
+    //        ui->label_Timing,
+    //        SLOT(setNum(int)))
+
+    connect(ui->horizontalSlider_Timing,
+            SIGNAL(valueChanged(int)),
+            this,
+            SLOT(valorTemp(int)));
 }
 
 void MainWindow::tcpConnect(){
@@ -59,20 +69,11 @@ void MainWindow::tcpDisconnect(){
     statusBar()->showMessage("Disconnected");
 }
 
-/*
-void MainWindow::copyIp(){
-
-}
-
-void MainWindow::setIp(){
-
-}
-
-
-void MainWindow::getData()
+void MainWindow::valorTemp(int timing)
 {
+    temp = timing*500;
+}
 
-}*/
 
 void MainWindow::startTemp()
 {
@@ -113,24 +114,37 @@ void MainWindow::getData(){
                     qDebug() << thetime << ": " << str;
                 }
 
-                valores = lista.at(1).toInt();
-                qDebug()<<
+                //valores = lista.at(1).toInt();
+
             }
         }
     }
 }
 
-void MainWindow::buttonStart(){
+void MainWindow::timerEvent(QTimerEvent *event)
+{
+    getData();
+}
 
+/*void MainWindow::buttonStart()
+{
+    ui->widget->setValor(valores);
 }
 
 void MainWindow::setValor()
 {
 
-}
+}*/
 
 MainWindow::~MainWindow()
 {
-  delete socket;
-  delete ui;
+    delete socket;
+    delete ui;
 }
+
+
+/*void MainWindow::copyIp(){}
+
+void MainWindow::setIp(){}
+
+void MainWindow::getData(){}*/

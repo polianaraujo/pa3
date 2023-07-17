@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QDebug>
+#include <QWidget>
+#include <QTimer>
 #include <QTimerEvent>
 
 namespace Ui {
@@ -19,16 +21,27 @@ public:
     ~MainWindow();
 
 public slots:
-    void putData();
-    void startTemp();
-    void stopTemp();
     void tcpConnect();
     void tcpDisconnect();
+
+    void quantidadeMax(int);
+    void quantidadeMin(int);
+    void valorTemp(int);
+
+    void putData();
+
+    void startTemp();
+    void stopTemp();
+
+    void timerEvent(QTimerEvent *event);
 
 private:
     Ui::MainWindow *ui;
     QTcpSocket *socket;
+    QTimer *Timer;
     int temp;
+    int quantMAX;
+    int quantMIN;
 };
 
 #endif // MAINWINDOW_H

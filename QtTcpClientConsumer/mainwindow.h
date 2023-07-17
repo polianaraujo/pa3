@@ -28,6 +28,8 @@ public slots:
     //void copyIp();
     void startTemp();
     void stopTemp();
+    void timerEvent(QTimerEvent);
+    void valorTemp(int);
 
 private:
   Ui::MainWindow *ui;
