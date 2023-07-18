@@ -51,17 +51,10 @@ void Plotter::paintEvent(QPaintEvent *event)
         y2 = height - (valor.at(i)*yScale); // valor do dado (altura total - o tamanho do dado gerado) recebendo assim a posição que deve ser colocado no gráfico. isso na escala de y definida
         painter.drawLine(x1, y1, x2, y2);   // desenhar uma reta do dado i até o i+1
 
-        /*int aux1;
-        aux1 = x2;
-        x1 = aux1;
-
-        int aux2;
-        aux2 = y2
-        y1 = aux2;*/
-
         x1 = x2;
         y1 = y2;
-        if(valor.size() >= 34) valor.erase(valor.begin());
+        //if(valor.size() >= 34) valor.erase(valor.size() = (i-34) );
+        //if(valor.size() >= 34) valor.erase(valor.begin());
     }
 }
 

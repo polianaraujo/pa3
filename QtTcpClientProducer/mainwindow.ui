@@ -177,7 +177,7 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>127.0.0.1</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_Stop">

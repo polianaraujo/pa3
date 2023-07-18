@@ -223,15 +223,15 @@
    <sender>pushButton_Update</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>showProd()</slot>
+   <slot>insertMachines()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>60</x>
      <y>323</y>
     </hint>
     <hint type="destinationlabel">
-     <x>171</x>
-     <y>337</y>
+     <x>170</x>
+     <y>336</y>
     </hint>
    </hints>
   </connection>
@@ -242,5 +242,6 @@
   <slot>startTemp()</slot>
   <slot>stopTemp()</slot>
   <slot>showProd()</slot>
+  <slot>insertMachines()</slot>
  </slots>
 </ui>

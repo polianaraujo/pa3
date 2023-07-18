@@ -39,7 +39,7 @@ public slots:
 private:
   Ui::MainWindow *ui;
   QTcpSocket *socket;
-  //QString selectedProducerIP;
+  QString selectedProducerIP;
   QStringList IPList;
 
   int temp;

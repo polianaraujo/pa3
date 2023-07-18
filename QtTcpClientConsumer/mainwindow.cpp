@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     socket = new QTcpSocket(this);
+    selectedProducerIP = "127.0.0.1";
 
     connect(ui->pushButton_Start,
             SIGNAL(clicked(bool)),
@@ -40,6 +41,11 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(valueChanged(int)),
             this,
             SLOT(valorTemp(int)));
+
+    connect(ui->listWidget,
+            &QListWidget::itemDoubleClicked,
+            this,
+            &MainWindow::itemSelected);
 }
 
 void MainWindow::tcpConnect()
@@ -96,17 +102,19 @@ void MainWindow::getData(){
     qDebug() << "to get data...";
 
     QHostAddress ipAddress = socket->peerAddress();
-    QString ipString = ipAddress.toString();
+    //QString ipString = ipAddress.toString();
+    selectedProducerIP = ipAddress.toString();
 
     // Atualizando a listas de IP's sem repetir.
-    if(IPList.contains(ipString)){ }
-    else{ IPList.append(ipString); }
+    if(IPList.contains(selectedProducerIP)){ }
+    else{ IPList.append(selectedProducerIP); }
 
     if(socket->state() == QAbstractSocket::ConnectedState){
 
         if(socket->isOpen()){
             qDebug() << "reading...";
-            socket->write("get 127.0.0.1 5\r\n");
+                //"GET" << selectedProducerIP << "5";
+            //socket->write(selectedProducerIP);
             socket->waitForBytesWritten();
             socket->waitForReadyRead();
             qDebug() << socket->bytesAvailable();
@@ -125,6 +133,7 @@ void MainWindow::getData(){
 
                 valores = list.at(1).toInt();
                 qDebug() << valores << "\n";
+                ui->widget->setValor(valores);
             }
         }
     }
