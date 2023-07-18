@@ -115,6 +115,9 @@ void MainWindow::getData(){
             qDebug() << "reading...";
                 //"GET" << selectedProducerIP << "5";
             //socket->write(selectedProducerIP);
+
+            socket->write("get 127.0.0.1 5\r\n");
+
             socket->waitForBytesWritten();
             socket->waitForReadyRead();
             qDebug() << socket->bytesAvailable();
