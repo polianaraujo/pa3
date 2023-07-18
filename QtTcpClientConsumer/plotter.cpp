@@ -5,7 +5,7 @@
 
 Plotter::Plotter(QWidget *parent) : QWidget{parent}
 {
-
+    alt = new int;
 }
 
 void Plotter::paintEvent(QPaintEvent *event)
@@ -33,40 +33,40 @@ void Plotter::paintEvent(QPaintEvent *event)
     painter.drawRect(0,0, width(), height());
 
     //gerar gráfico
+    pen.setColor(QColor(255,100,0));
     int x1, y1, x2, y2;
+    int width=this->width(), height=this->height();
 
-    x1=0;
-    y1=height();
-    y2=valor;
+    //Escala dos eixos x e y do gráfico
+    double xScale = width  / 31;
+    double yScale = height / 100;
 
-    m = (double) (height() - y2)/(double)width();
-    //b =
+    x1 = 0;
+    y1 = height;
+    //y2 = valor;
 
-    for(int i=1; i<width(); i++)
+    for(int i=0; i < valor.size(); i++)
     {
-        //desenha o gráfico dos dados gerados ao longo do tempo
-        pen.setColor(QColor(255,100,0));
-        painter.setPen(pen);
+        x2 = i * xScale;                    // tempo ao longo do eixo x (na escala definida)
+        y2 = height - (valor.at(i)*yScale); // valor do dado (altura total - o tamanho do dado gerado) recebendo assim a posição que deve ser colocado no gráfico. isso na escala de y definida
+        painter.drawLine(x1, y1, x2, y2);   // desenhar uma reta do dado i até o i+1
 
-        x2 = i + width()/30; // temp
-        y2 = (m*x2 + valor); // valor do dado gerado
-        painter.drawLine(x1, y1, x2, y2);
-
-        int aux1;
+        /*int aux1;
         aux1 = x2;
         x1 = aux1;
 
         int aux2;
         aux2 = y2
-        y1 = aux2;
+        y1 = aux2;*/
+
+        x1 = x2;
+        y1 = y2;
+        if(valor.size() >= 34) valor.erase(valor.begin());
     }
 }
 
-void Plotter::setValor(int _valor);
+void Plotter::setValor(int _valor)
 {
-    if(_valor != valor)
-    {
-        valor = _valor;
-        repaint();
-    }
+    valor.append(_valor);
+    repaint();
 }

@@ -18,24 +18,32 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-  
-    void tcpConnect();
-    void tcpDisconnect();
 
 public slots:
     void getData();
-    //void setIp();
-    //void copyIp();
+
+    void tcpConnect();
+    void tcpDisconnect();
+
+    void valorTemp(int); // void valorInterv(int);
+
     void startTemp();
     void stopTemp();
-    void timerEvent(QTimerEvent);
-    void valorTemp(int);
+
+    void insertMachines(); //void updateIp(); void copiatexto();
+
+    void timerEvent(QTimerEvent *event);
+
+    void itemSelected(QListWidgetItem *item);
 
 private:
   Ui::MainWindow *ui;
   QTcpSocket *socket;
+  //QString selectedProducerIP;
+  QStringList IPList;
+
   int temp;
-  QString selectedProducerIP;
+  int valores;
 };
 
 #endif // MAINWINDOW_H

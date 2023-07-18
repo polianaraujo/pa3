@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_Update,
             SIGNAL(clicked(bool)),
             this,
-            SLOT(copyIp()));
+            SLOT(insertMachines()));
 
     connect(ui->pushButton_Connect,
             SIGNAL(clicked(bool)),
@@ -36,18 +36,14 @@ MainWindow::MainWindow(QWidget *parent) :
             this,
             SLOT(tcpDisconnect()));
 
-    //connect(ui->horizontalSlider_Timing,
-    //        SIGNAL(valueChanged(int)),
-    //        ui->label_Timing,
-    //        SLOT(setNum(int)))
-
     connect(ui->horizontalSlider_Timing,
             SIGNAL(valueChanged(int)),
             this,
             SLOT(valorTemp(int)));
 }
 
-void MainWindow::tcpConnect(){
+void MainWindow::tcpConnect()
+{
     socket->connectToHost(ui->lineEdit_ServerIP->text(),1234);
 
     if(socket->waitForConnected(3000)){
@@ -60,38 +56,51 @@ void MainWindow::tcpConnect(){
     }
 }
 
-void MainWindow::tcpDisconnect(){
-
-    /*if(socket->waitForDisconnected(3000)){
-        statusBar()->showMessage("Disconnected");
-    }*/
+void MainWindow::tcpDisconnect()
+{
     socket->disconnectFromHost();
     statusBar()->showMessage("Disconnected");
 }
 
-void MainWindow::valorTemp(int timing)
+void MainWindow::valorTemp(int timing) // Valor do timing
 {
     temp = timing*500;
 }
 
 
-void MainWindow::startTemp()
+void MainWindow::startTemp() // Iniciar o timing
 {
     int timing = 1000*ui->horizontalSlider_Timing->value();
     temp = startTimer(timing);
 }
 
-void MainWindow::stopTemp()
+void MainWindow::stopTemp() // Parar o timing
 {
     killTimer(temp);
 }
 
+// Inserir a lista de máquinas na listWidget
+// E limpar a lista ao clicar no botão 'Update'.
+// Mostrando as máquinas conectadas no servidor conectado.
+void MainWindow::insertMachines() //updateIp
+{
+    ui->listWidget->clear();
+    ui->listWidget->addItems(IPList);
+}
+
 void MainWindow::getData(){
     QString str;
-    QByteArray array;
+    //QByteArray array;
     QStringList list;
     qint64 thetime;
     qDebug() << "to get data...";
+
+    QHostAddress ipAddress = socket->peerAddress();
+    QString ipString = ipAddress.toString();
+
+    // Atualizando a listas de IP's sem repetir.
+    if(IPList.contains(ipString)){ }
+    else{ IPList.append(ipString); }
 
     if(socket->state() == QAbstractSocket::ConnectedState){
 
@@ -114,8 +123,8 @@ void MainWindow::getData(){
                     qDebug() << thetime << ": " << str;
                 }
 
-                //valores = lista.at(1).toInt();
-
+                valores = list.at(1).toInt();
+                qDebug() << valores << "\n";
             }
         }
     }
@@ -124,27 +133,32 @@ void MainWindow::getData(){
 void MainWindow::timerEvent(QTimerEvent *event)
 {
     getData();
+
 }
 
-/*void MainWindow::buttonStart()
+void MainWindow::itemSelected(QListWidgetItem *item)
 {
-    ui->widget->setValor(valores);
+    QString selected = item->text();
+
+    // Coisas que vão acontecer com o item selecionado:
+    tcpDisconnect();                      // Garante a disconexão da máquina anterior.
+    socket->connectToHost(selected,1234); // Conecta a máquina (item) selecinado na porta 1234
+
+    if(socket->waitForConnected(3000))
+    {
+        qDebug() << "Connected";
+        statusBar()->showMessage("Connected");
+    }else
+    {
+        qDebug() << "Disconnected";
+        statusBar()->showMessage("Disconnected");
+    }
+
+    qDebug() << "Item selecionado: " << selected;
 }
-
-void MainWindow::setValor()
-{
-
-}*/
 
 MainWindow::~MainWindow()
 {
     delete socket;
     delete ui;
 }
-
-
-/*void MainWindow::copyIp(){}
-
-void MainWindow::setIp(){}
-
-void MainWindow::getData(){}*/

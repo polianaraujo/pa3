@@ -134,6 +134,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
@@ -159,6 +162,9 @@
       <width>64</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_ServerIP">

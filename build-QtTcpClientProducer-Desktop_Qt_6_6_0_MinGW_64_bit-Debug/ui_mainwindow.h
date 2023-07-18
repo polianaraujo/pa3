@@ -87,6 +87,7 @@ public:
         horizontalSlider_Timing = new QSlider(centralWidget);
         horizontalSlider_Timing->setObjectName("horizontalSlider_Timing");
         horizontalSlider_Timing->setGeometry(QRect(69, 240, 121, 20));
+        horizontalSlider_Timing->setMinimum(1);
         horizontalSlider_Timing->setOrientation(Qt::Horizontal);
         label_Timing = new QLabel(centralWidget);
         label_Timing->setObjectName("label_Timing");
@@ -94,6 +95,7 @@ public:
         lcdNumber_Timing = new QLCDNumber(centralWidget);
         lcdNumber_Timing->setObjectName("lcdNumber_Timing");
         lcdNumber_Timing->setGeometry(QRect(200, 240, 64, 31));
+        lcdNumber_Timing->setMidLineWidth(0);
         lineEdit_ServerIP = new QLineEdit(centralWidget);
         lineEdit_ServerIP->setObjectName("lineEdit_ServerIP");
         lineEdit_ServerIP->setGeometry(QRect(10, 10, 251, 24));
@@ -119,10 +121,6 @@ public:
         QObject::connect(horizontalSlider_Min, SIGNAL(valueChanged(int)), lcdNumber_Min, SLOT(display(int)));
         QObject::connect(horizontalSlider_Max, SIGNAL(valueChanged(int)), lcdNumber_Max, SLOT(display(int)));
         QObject::connect(horizontalSlider_Timing, SIGNAL(valueChanged(int)), lcdNumber_Timing, SLOT(display(int)));
-        QObject::connect(pushButton_Connect, SIGNAL(clicked()), MainWindow, SLOT(tcpConnect()));
-        QObject::connect(pushButton_Disconnect, SIGNAL(clicked()), MainWindow, SLOT(tcpDisconnect()));
-        QObject::connect(pushButton_Start, SIGNAL(clicked()), MainWindow, SLOT(startTemp()));
-        QObject::connect(pushButton_Stop, SIGNAL(clicked()), MainWindow, SLOT(stopTemp()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
